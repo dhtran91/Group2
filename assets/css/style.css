@@ -1,15 +1,37 @@
+html{
+    height: 100%;
+    /* box-sizing: border-box; */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
     background-position: center;
     /* background-repeat: no-repeat; */
     background-size: cover;
 }
 
+.container-fluid, .navbar-header, .navbar-brand {
+    height: 60px;
+}
+
 #navbar {
-    /* background-color: none; */
-    opacity: .05;
+    background-color: teal;
+    /* opacity: .05; */
     margin-bottom: 0px;
     border: none;
     border-radius: 0px;
+    height: 60px;
+    margin-bottom: 6px;
+    margin-top: 6px; 
 }
 
 .navbar-header {
@@ -25,11 +47,12 @@ body {
 
 #signInButton {
     float: right;
+    margin-top: 15px;
 }
 
 #slideImg {
     width: 100%;
-    height: 400px;
+    height: 380px;
 }
 
 .carousel-caption {
@@ -45,6 +68,7 @@ body {
     height: 150px;
     width: 100%; 
     text-align: center;
+    margin-top: 6px;
 }
 
 .input {
@@ -60,22 +84,58 @@ body {
     margin-top: 10px
 }
 
-/* #myCarousel {
-    border-radius: 25%;
-} */
-
-/* #contentArea {
+#contentArea {
     background-color: white;
     height: 500px;
-} */
+    margin-top: 6px;
+}
 
+#mapContainer {
+    margin-top: 6px;
+    text-align: center;
+}
 #mapArea{
-    background-color: white;
+    background-color: black;
     height: 500px;
-} 
+    border-radius: 25px;
+}
 
 #filter-btn {
     margin-top: 10px;
+}
+
+#btnItinerary {
+    margin-top: 9px;
+}
+
+#footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: teal;
+    text-align: center;
+    width: 100%;
+} 
+
+#pg2Container {
+    height: 600px;
+    background-color: black;
+    margin-top: 6px;
+
+}
+
+#itineraryTable {
+    height: 600px;
+    background-color: white;
+    width: 45%;
+}
+
+#map2Div {
+    background-color: gray;
+    height: 600px;
+    width: 45%;
 }
 
 
