@@ -3,6 +3,7 @@ var infowindow;
 
 function initMap() {
     infowindow = new google.maps.InfoWindow();
+    //Setting long and lat
     let city = { lat: 29.7765065, lng: -95.4201377 };
     let mapOptions = {
         zoom: 4,
@@ -25,9 +26,6 @@ function initMap() {
         marker.setVisible(false);
         var place = autocomplete.getPlace();
 
-        console.log(place);
-        // let filterType = ['store'];
-
         if (!place.geometry) {
             // User entered the name of a Place that was not suggested and
             // pressed the Enter key, or the Place Details request failed.
@@ -44,28 +42,30 @@ function initMap() {
         }
 
         marker.setPosition(place.geometry.location);
-        // marker.setVisible(true);
+        
 
-        //Adding markers
+        //Finding the top 10 things to do based on autocomplete location and using the callback function
         service.nearbySearch({
             location: place.geometry.location,
             radius: 20000,
             keyword: "Things to do in " + place.address_components[0].short_name,
-            // type: filterType,
             rankby: "prominence"
         }, callback);
     })
 }
 
+//Callback that will return top 10 results based on nearbysearch parameters
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-        //i = 10 to return top 10 results.
         for (var i = 0; i <= 10; i++) {
+            //Will create a marker for each JSON
             createMarker(results[i]);
+            //Console logging to see the object
             console.log(results[i])
         }
     }
 }
+
 
 function createMarker(place) {
     var placeLoc = place.geometry.location;
@@ -74,6 +74,7 @@ function createMarker(place) {
         position: place.geometry.location
     });
 
+    //Adding a click event listener to the marker that will generate the popup infowindow 
     google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent('<img src="' + place.icon + '" width="16" height="16"><div><strong>' + place.name + '</strong><br>' + 'Address: ' + place.vicinity + '</div><a href="#">Add to my Itinerary</a>');
         infowindow.open(map, this);
@@ -83,15 +84,7 @@ function createMarker(place) {
 $(document).on('click', '#btnSearch', searchCity)
 function searchCity() {
     let citySearch = $('#cityInput').val().trim();
-
     //need to find long and lat of input
     console.log(citySearch);
 
-    // let queryUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?radius=20000&keyword=things%20to%20do%20in%20" + cityname + "&rankby=prominence&location=" + location + "key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU"
-    // $.ajax({
-    //     url: queryUrl,
-    //     method: "Get"
-    // }).then(function (result) {
-    //     console.log(result);
-    // })
 }
