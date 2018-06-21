@@ -128,12 +128,12 @@ body {
 
 #itineraryTable {
     height: 600px;
-    background-color: white;
+    /* background-color: white; */
     width: 45%;
 }
 
 #map2Div {
-    background-color: gray;
+    /* background-color: gray; */
     height: 600px;
     width: 45%;
 }
