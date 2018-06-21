@@ -53,15 +53,19 @@ function initMap() {
         }, callback);
     })
 }
-
+let toptenthings = [];
 //Callback that will return top 10 results based on nearbysearch parameters
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i <= 10; i++) {
+        if (toptenthings.length !== 0) {
+            toptenthings = [];
+        }
+        for (var i = 0; i < 10; i++) {  
             //Will create a marker for each JSON
             createMarker(results[i]);
+            toptenthings.push(results[i]);
             //Console logging to see the object
-            console.log(results[i])
+            console.log(toptenthings[i]);
         }
     }
 }
