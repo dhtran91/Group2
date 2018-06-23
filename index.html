@@ -15,6 +15,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- New Library CCShake -->
+    <link rel="stylesheet" type="text/css" href="assets/newLibrary/csshake/docs/csshake.css">
     <title>Document</title>
 </head>
 
@@ -45,36 +47,46 @@
             <div class="item active">
                 <img src="assets/images/cancun.jpg" alt="Cancun" id="slideImg">
                 <div class="carousel-caption">
-                    <h3>Welcome to (Name)</h3>
-                    <p>Let's us help you build your travel itinerary</p>
+                    <div id="captions">
+                        <h3>Welcome to (Name)</h3>
+                        <p>Let's us help you build your travel itinerary</p>
+                    </div>
                 </div>
             </div>
             <div class="item">
                 <img src="assets/images/tokyo.jpg" alt="Tokyo" id="slideImg">
                 <div class="carousel-caption">
-                    <h3>Think of a place you'd like to visit</h3>
-                    <p>Or create a bucket list!</p>
+                    <div id="captions">
+                        <h3>Think of a place you'd like to visit</h3>
+                        <p>Or create a bucket list!</p>
+                    </div>
                 </div>
             </div>
             <div class="item">
                 <img src="assets/images/paris.jpg" alt="Paris" id="slideImg">
                 <div class="carousel-caption">
-                    <h3>Search a city you would like to visit</h3>
-                    <p>Find the coolest tourist attractions in that city </p>
+                    <div id="captions">
+                        <h3>Search a city you would like to visit</h3>
+                        <p>Find the coolest tourist attractions in that city </p>
+                    </div>
                 </div>
             </div>
             <div class="item">
                 <img src="assets/images/london.jpg" alt="London" id="slideImg">
                 <div class="carousel-caption">
-                    <h3>Create a travel itinerary</h3>
-                    <p>And access it from your phone at any time</p>
+                    <div id="captions">
+                        <h3>Create a travel itinerary</h3>
+                        <p>And access it from your phone at any time</p>
+                    </div>
                 </div>
             </div>
             <div class="item">
                 <img src="assets/images/philippines.jpeg" alt="Philippines" id="slideImg">
                 <div class="carousel-caption">
-                    <h3>Let's get started</h3>
-                    <p>You can even filter by category</p>
+                    <div id="captions">
+                        <h3>Let's get started</h3>
+                        <p>You can even filter by category</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,7 +109,6 @@
                     <div class="inputField">
                         <input type="text" class="input" id="cityInput" placeholder="Ibiza, London, etc...">
                     </div>
-                    <button type="button" class="btn btn-default" id="btnSearch">Search</button>
                     <div class="btn-group" role="group">
                         <button id="filter-btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -140,44 +151,39 @@
                 <div id="mapArea" class="col-lg-12">
                     Map will go here
                 </div>
-                <button type="button" class="btn btn-default" id="btnItinerary">
+                <button type="button" class="btn btn-default shake" id="btnItinerary">
                     View Itinerary
                 </button>
             </div>
             <br>
 
             <div class="row">
-                    <div class="col-md-6">
-                        <div id="ititneraryTable" class="table-responsive">
-        
-                        </div>
+                <div class="col-md-6">
+                    <div id="itineraryTable" class="table-responsive">
                     </div>
                 </div>
+            </div>
         </div>
+    </div>
 
-
-        <br>
-
-
-
-
-        <!-- <div class="col-md-6">
+    <br>
+    <!-- <div class="col-md-6">
             <div class="itineraryMap">
 
             </div>
         </div>
     </div> -->
-        <div class="container" id="footer">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Footer</p>
-                </div>
+    <div class="container" id="footer">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Footer</p>
             </div>
         </div>
+    </div>
 
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU&libraries=places&callback=initMap"
-            async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU&libraries=places&callback=initMap"
+        async defer></script>
 </body>
 <script src="./assets/javascript/main.js"></script>
 

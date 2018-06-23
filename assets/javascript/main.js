@@ -115,10 +115,10 @@ function searchCity() {
 function populateTable(fiveOptions) {
 
 
-    var table = '<table cellpadding="0" cellspacing="0"  class="table table-striped" id="listPlaces">';
+    var table = '<table cellpadding="0" cellspacing="0"  class="table text-center" id="listPlaces">';
     table += '<thead>';
     table += '<tr>';
-    table += '<th style="text-aling: center">Hours</th><th>Place</th>';
+    table += '<th class="text-center">Hours</th><th class="text-center">Place</th>';
     table += '</tr>';
     table += '</thead>';
     table += '<tbody>';
@@ -134,20 +134,22 @@ function populateTable(fiveOptions) {
     table += tr;
     table += '</tbody></table>';
 
-    $('#ititneraryTable').append(table);
-    $('#ititneraryTable').css("background-color", "white");
-    $('#ititneraryTable').css("border-radius", "25px");
+    $('#itineraryTable').append(table);
+    $('#itineraryTable').css("background-color", "teal");
+    $('#itineraryTable').css("border-radius", "25px");
+    $('#itineraryTable').css("color", "white");
+
 
     var btnOtherOptions = $(`<button type="button">Other Options</button>`);
     btnOtherOptions.addClass("btn btn-default");
     btnOtherOptions.attr('id', "btnOtherItinerary");
 
-    $('#ititneraryTable').append(btnOtherOptions);
+    $('#itineraryTable').append(btnOtherOptions);
 }
 
 $("#btnItinerary").on("click", function () {
 
-    $("#ititneraryTable").empty();
+    $("#itineraryTable").empty();
 
 
     var city = $('#cityInput').val().trim();
@@ -164,13 +166,13 @@ $("#btnItinerary").on("click", function () {
 function otherOptipns() {
 
     if (clickedOptions == false){
-        $("#ititneraryTable").empty();
+        $("#itineraryTable").empty();
         populateTable(topSecondFive);
         clickedOptions = true;
         $('#btnOtherItinerary').html("Previous options");
     }else{
         
-        $("#ititneraryTable").empty();
+        $("#itineraryTable").empty();
         populateTable(topFirstFive);
         clickedOptions = false;
     }
