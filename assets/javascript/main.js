@@ -1,5 +1,11 @@
 var map;
 var infowindow;
+const hours = ["9:00am", "11:00am", "1:00am", "3:00am", "5:00am"];
+
+var topFirstFive = [];
+var topSecondFive = [];
+
+var clickedOptions = false;
 
 function initMap() {
     infowindow = new google.maps.InfoWindow();
@@ -33,6 +39,9 @@ function initMap() {
             return;
         }
 
+
+
+
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
@@ -42,7 +51,7 @@ function initMap() {
         }
 
         marker.setPosition(place.geometry.location);
-        
+
 
         //Finding the top 10 things to do based on autocomplete location and using the callback function
         service.nearbySearch({
@@ -53,20 +62,22 @@ function initMap() {
         }, callback);
     })
 }
-let toptenthings = [];
 //Callback that will return top 10 results based on nearbysearch parameters
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-        if (toptenthings.length !== 0) {
-            toptenthings = [];
-        }
-        for (var i = 0; i < 10; i++) {  
+
+        for (var i = 0; i < 10; i++) {
             //Will create a marker for each JSON
             createMarker(results[i]);
-            toptenthings.push(results[i]);
-            //Console logging to see the object
-            console.log(toptenthings[i]);
-        }
+            if ( i < 5){
+                topFirstFive.push(results[i]);
+                console.log(topFirstFive);
+                
+            }else{
+                topSecondFive.push(results[i]);
+           
+            }
+        } 
     }
 }
 
@@ -92,3 +103,84 @@ function searchCity() {
     console.log(citySearch);
 
 }
+
+$(document).on('click', '#btnSearch', searchCity)
+function searchCity() {
+    let citySearch = $('#cityInput').val().trim();
+    //need to find long and lat of input
+    console.log(citySearch);
+}
+
+
+function populateTable(fiveOptions) {
+
+
+    var table = '<table cellpadding="0" cellspacing="0"  class="table table-striped" id="listPlaces">';
+    table += '<thead>';
+    table += '<tr>';
+    table += '<th style="text-aling: center">Hours</th><th>Place</th>';
+    table += '</tr>';
+    table += '</thead>';
+    table += '<tbody>';
+    tr = '';
+
+    for (i = 0; i < fiveOptions.length; i++) {
+        tr += '<tr>';
+        tr += '<td>' + hours[i] + '</td>';
+        tr += '<td>' + fiveOptions[i].name + '</td>';
+        tr += '</tr>';
+    }
+
+    table += tr;
+    table += '</tbody></table>';
+
+    $('#ititneraryTable').append(table);
+    $('#ititneraryTable').css("background-color", "white");
+    $('#ititneraryTable').css("border-radius", "25px");
+
+    var btnOtherOptions = $(`<button type="button">Other Options</button>`);
+    btnOtherOptions.addClass("btn btn-default");
+    btnOtherOptions.attr('id', "btnOtherItinerary");
+
+    $('#ititneraryTable').append(btnOtherOptions);
+}
+
+$("#btnItinerary").on("click", function () {
+
+    $("#ititneraryTable").empty();
+
+
+    var city = $('#cityInput').val().trim();
+
+    if (city === "") {
+        var p = $(`<p style="color: white" id="error">You must to type a city</p>`);
+        $('.inputField').append(p);
+    } else {
+        $("#error").css('display', 'none');
+        populateTable(topFirstFive);
+    }
+});
+
+function otherOptipns() {
+
+    if (clickedOptions == false){
+        $("#ititneraryTable").empty();
+        populateTable(topSecondFive);
+        clickedOptions = true;
+        $('#btnOtherItinerary').html("Previous options");
+    }else{
+        
+        $("#ititneraryTable").empty();
+        populateTable(topFirstFive);
+        clickedOptions = false;
+    }
+
+}
+
+$(document).on("click", "#btnOtherItinerary", otherOptipns);
+
+
+
+
+
+
