@@ -1,3 +1,28 @@
+var mainApp = {};
+
+(function () {
+    var uid = null;
+    var firebase = app_firebase;
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in.
+            uid = user.uid;
+        } else {
+            uid = null;
+            window.location.replace('./login.html');
+        }
+    });
+
+    function logOut() {
+        firebase.auth().signOut();
+    }
+
+    mainApp.logOut =logOut;
+})();
+
+
+
 var map;
 var infowindow;
 const hours = ["9:00am", "11:00am", "1:00am", "3:00am", "5:00am"];
@@ -39,9 +64,6 @@ function initMap() {
             return;
         }
 
-
-
-
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
@@ -51,7 +73,6 @@ function initMap() {
         }
 
         marker.setPosition(place.geometry.location);
-
 
         //Finding the top 10 things to do based on autocomplete location and using the callback function
         service.nearbySearch({
@@ -69,15 +90,15 @@ function callback(results, status) {
         for (var i = 0; i < 10; i++) {
             //Will create a marker for each JSON
             createMarker(results[i]);
-            if ( i < 5){
+            if (i < 5) {
                 topFirstFive.push(results[i]);
                 console.log(topFirstFive);
-                
-            }else{
+
+            } else {
                 topSecondFive.push(results[i]);
-           
+
             }
-        } 
+        }
     }
 }
 
@@ -163,13 +184,13 @@ $("#btnItinerary").on("click", function () {
 
 function otherOptipns() {
 
-    if (clickedOptions == false){
+    if (clickedOptions == false) {
         $("#ititneraryTable").empty();
         populateTable(topSecondFive);
         clickedOptions = true;
         $('#btnOtherItinerary').html("Previous options");
-    }else{
-        
+    } else {
+
         $("#ititneraryTable").empty();
         populateTable(topFirstFive);
         clickedOptions = false;
@@ -177,10 +198,7 @@ function otherOptipns() {
 
 }
 
+
+
 $(document).on("click", "#btnOtherItinerary", otherOptipns);
-
-
-
-
-
 
