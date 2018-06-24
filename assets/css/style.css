@@ -65,10 +65,11 @@ body {
 
 #searchSection {
     background-color: teal;
-    height: 150px;
+    /* height: 150px; */
     width: 100%; 
     text-align: center;
     margin-top: 6px;
+    padding-bottom: 2%;
 }
 
 .input {
@@ -98,6 +99,7 @@ body {
     background-color: black;
     height: 500px;
     border-radius: 25px;
+    border-color: black 3px;
 }
 
 #filter-btn {
@@ -137,5 +139,16 @@ body {
     height: 600px;
     width: 45%;
 }
+
+#ititneraryTable{
+    color: blue;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+}
+#btnOtherItinerary{
+    align-self: center;
+}
+
 
 

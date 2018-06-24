@@ -1,8 +1,11 @@
 let map;
 let infowindow;
-let toptenthings = [];
 let bounds;
 let markers = [];
+const hours = ["9:00am", "11:00am", "1:00am", "3:00am", "5:00am"];
+var topFirstFive = [];
+var topSecondFive = [];
+var clickedOptions = false;
 
 function initMap() {
 
@@ -25,8 +28,6 @@ function initMap() {
         infowindow.close();
         let place = autocomplete.getPlace();
         searchNearbyServices(place);
-
-        //Irina code
     })
 
 }
@@ -64,24 +65,23 @@ function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         //Resetting the toptenthings variable and deleting any markers on the map if exist
         clearOverlays();
-        toptenthings = [];
+        topFirstFive = [];
+        topSecondFive = [];
         bounds = new google.maps.LatLngBounds();
 
-        for (let i = 0; i < 10; i++) {
-            //Pushing each JSON object to the toptenthings array variable
-            toptenthings.push(results[i]);
-            console.log(toptenthings[i]);
-        }
-
         //Creating markers based on the toptenthings array variable
-        for (let i = 0; i < toptenthings.length; i++) {
+        for (let i = 0; i < 10; i++) {
             //Create a marker each item
-            createMarker(toptenthings[i], toptenthingsPhotoReferences[i]);
+            createMarker(results[i]);
+            if ( i < 5){
+                topFirstFive.push(results[i]);
+            } else{
+                topSecondFive.push(results[i]);
+            }
         }
-
+        
         //Fitting the map boundary to show all markers of the search 
         map.fitBounds(bounds);
-
     }
 }
 
@@ -97,7 +97,7 @@ function createMarker(place, photoReference) {
 
     //Marker's click event listener that will generate a popup infowindow 
     google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent('<img src="' + place.icon + '" width="16" height="16"><div><strong>' + place.name + '</strong><br>' + 'Address: ' + place.vicinity + '<br>Reviews: ' + place.reviews + '<br><img src="' + photoReference + '"width="100" height="100"></div>');
+        infowindow.setContent('<img src="' + place.icon + '" width="16" height="16"><div><strong>' + place.name + '</strong><br>' + 'Address: ' + place.vicinity + '</div>');
         infowindow.open(map, this);
     });
 }
@@ -124,45 +124,69 @@ $(document).on('click', '#btnSearch', function () {
         })
 })
 
+function populateTable(fiveOptions) {
 
 
+    var table = '<table cellpadding="0" cellspacing="0"  class="table table-striped" id="listPlaces">';
+    table += '<thead>';
+    table += '<tr>';
+    table += '<th style="text-aling: center">Hours</th><th>Place</th>';
+    table += '</tr>';
+    table += '</thead>';
+    table += '<tbody>';
+    tr = '';
+
+    for (i = 0; i < fiveOptions.length; i++) {
+        tr += '<tr>';
+        tr += '<td>' + hours[i] + '</td>';
+        tr += '<td>' + fiveOptions[i].name + '</td>';
+        tr += '</tr>';
+    }
+
+    table += tr;
+    table += '</tbody></table>';
+
+    $('#ititneraryTable').append(table);
+    $('#ititneraryTable').css("background-color", "white");
+    $('#ititneraryTable').css("border-radius", "25px");
+
+    var btnOtherOptions = $(`<button type="button">Other Options</button>`);
+    btnOtherOptions.addClass("btn btn-default");
+    btnOtherOptions.attr('id', "btnOtherItinerary");
+
+    $('#ititneraryTable').append(btnOtherOptions);
+}
+
+$("#btnItinerary").on("click", function () {
+
+    $("#ititneraryTable").empty();
 
 
-// let toptenthingsPlaceId = [];
-// function getDetails(placeId) {
-//     let queryUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&fields=name,photo,review,website,rating,formatted_phone_number&key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU"
+    var city = $('#cityInput').val().trim();
 
-//     $.ajax({
-//         url: queryUrl,
-//         method: "GET"
-//     }).then(function (result) {
-//         // //Getting the details of the place
-//         // console.log(result)
+    if (city === "") {
+        var p = $(`<p style="color: white" id="error">You must to type a city</p>`);
+        $('.inputField').append(p);
+    } else {
+        $("#error").css('display', 'none');
+        populateTable(topFirstFive);
+    }
+});
+
+function otherOptipns() {
+
+    if (clickedOptions == false){
+        $("#ititneraryTable").empty();
+        populateTable(topSecondFive);
+        clickedOptions = true;
+        $('#btnOtherItinerary').html("Previous options");
+    }else{
         
-//         toptenthingsPhotoReferences.push("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + result.result.photos[0].photo_reference + "&key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU");
+        $("#ititneraryTable").empty();
+        populateTable(topFirstFive);
+        clickedOptions = false;
+    }
 
-//     })
+}
 
-// }
-
-// let toptenthingsPhotoReferences = [];
-// //Function to calculate time of origin to destination but still needs to work with
-// function calculateTimeAndDistance() {
-//     let queryUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU";
-
-//     for(let i = 0; i < toptenthings.length; i++) {
-//         if (i === 0) {
-//             queryUrl += "&origins=place_id:" + toptenthings[i].place_id;
-//         } else {
-//             toptenthingsPlaceId.push("place_id:" + toptenthings[i].place_id );
-//         }
-//     }
-
-//     queryUrl += "&destinations=" + toptenthingsPlaceId.join('|').toString();
-//     $.ajax({
-//         url: queryUrl,
-//         method: "GET"
-//     }).then(function(result) {
-//         console.log(result)
-//     })
-// }
+$(document).on("click", "#btnOtherItinerary", otherOptipns);
