@@ -20,7 +20,9 @@
     <title>Document</title>
 </head>
 
-<body background="assets/images/pattern7.jpg">
+
+<!-- background="assets/images/pattern7.jpg" -->
+<body >
     <nav class="navbar navbar-default" id="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -28,7 +30,7 @@
                     <img alt="Brand" id="logo" src="assets/images/logo.jpg">
                 </a>
             </div>
-            <button type="button" onclick="mainApp.logOut()" class="btn btn-default navbar-btn">Sign out</button>
+            <!-- <button type="button" onclick="mainApp.logOut()" class="btn btn-default navbar-btn">Sign out</button> -->
         </div>
     </nav>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -91,19 +93,27 @@
         </a>
     </div>
 
-    <div class="row">
-        <!-- <div id="contentArea" class="col-lg-6"></div> -->
-        <div class="col-md-6" id="login">
-            <h1>Welcome to My Awesome App</h1>
-            <div id="firebaseui-auth-container"></div>
-            <div id="loader">Loading...</div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="login">
+                        <div id="firebaseui-auth-container"></div>
+                        <div id="loader">Loading...</div>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- <div id="contentArea" class="col-lg-6"></div> -->
+    <!-- <div class="col-md-6" id="login">
+        
+    </div>
+    </div> -->
 
     <div class="container" id="footer">
         <div class="row">
             <div class="col-lg-12">
-                <p>Footer</p>
+                <h4>Contact us</h4>
             </div>
         </div>
     </div>
