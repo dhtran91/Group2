@@ -16,7 +16,9 @@ body {
     min-height: 100%;
     background-position: center;
     /* background-repeat: no-repeat; */
-    background-size: cover;
+    /* background-size: cover; */
+    background-color: #dbdbdb;
+    
 }
 
 .container-fluid, .navbar-header, .navbar-brand {
@@ -96,10 +98,10 @@ body {
     text-align: center;
 }
 #mapArea{
-    background-color: black;
+    /* background-color: black; */
     height: 500px;
-    border-radius: 25px;
-    border-color: black 3px;
+    /* border-radius: 25px; */
+    /* border-color: black 3px; */
 }
 
 #filter-btn {
@@ -121,18 +123,14 @@ body {
     width: 100%;
 } 
 
-#pg2Container {
+/* #pg2Container {
     height: 600px;
     background-color: black;
     margin-top: 6px;
 
-}
+} */
 
-#itineraryTable {
-    height: 600px;
-    /* background-color: white; */
-    width: 45%;
-}
+
 
 #map2Div {
     /* background-color: gray; */
@@ -140,15 +138,27 @@ body {
     width: 45%;
 }
 
-#ititneraryTable{
-    color: blue;
-    padding-top: 2%;
-    padding-bottom: 2%;
 
-}
 #btnOtherItinerary{
     align-self: center;
 }
 
+#login{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
 
+p{
+    color: white;
+    font-size: 25px;
+}
+
+.content{
+    background-color: white ;
+    padding: 2%;
+    width: 80%;
+    align-self: center;
+    border: 10px double #dbdbdb;
+   
+}
 
