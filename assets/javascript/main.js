@@ -1,116 +1,128 @@
-var map;
-var infowindow;
+let map;
+let infowindow;
+let bounds;
+let markers = [];
 const hours = ["9:00am", "11:00am", "1:00am", "3:00am", "5:00am"];
-
 var topFirstFive = [];
 var topSecondFive = [];
-
 var clickedOptions = false;
 
 function initMap() {
+
     infowindow = new google.maps.InfoWindow();
-    //Setting long and lat
+    //Setting default view of the map
     let city = { lat: 29.7765065, lng: -95.4201377 };
     let mapOptions = {
         zoom: 4,
         center: city
     }
-    map = new google.maps.Map(document.getElementById('mapArea'), mapOptions);
-    var service = new google.maps.places.PlacesService(map);
-    var marker = new google.maps.Marker({
-        map: map,
-        anchorPoint: new google.maps.Point(0, -29)
-    });
 
-    var input = document.getElementById('cityInput');
-    var autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.bindTo('bounds', map);
+    //Initalizing map at $mapArea with the map options settings 
+    map = new google.maps.Map($('#mapArea')[0], mapOptions);
 
-    //Event listening for place changed
+    let $cityInput = $('#cityInput')[0];
+    let autocomplete = new google.maps.places.Autocomplete($cityInput, { types: ['(cities)'] });
+
+    //Event listening for place changed which will change view of map to city selected
     autocomplete.addListener('place_changed', function () {
         infowindow.close();
-        marker.setVisible(false);
-        var place = autocomplete.getPlace();
-
-        if (!place.geometry) {
-            // User entered the name of a Place that was not suggested and
-            // pressed the Enter key, or the Place Details request failed.
-            window.alert("No details available for input: '" + place.name + "'");
-            return;
-        }
-
-
-
-
-        // If the place has a geometry, then present it on a map.
-        if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-        } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);  // Why 17? Because it looks good.
-        }
-
-        marker.setPosition(place.geometry.location);
-
-
-        //Finding the top 10 things to do based on autocomplete location and using the callback function
-        service.nearbySearch({
-            location: place.geometry.location,
-            radius: 20000,
-            keyword: "Things to do in " + place.address_components[0].short_name,
-            rankby: "prominence"
-        }, callback);
+        let place = autocomplete.getPlace();
+        searchNearbyServices(place);
     })
+
 }
-//Callback that will return top 10 results based on nearbysearch parameters
+
+function searchNearbyServices(place) {
+    if (!place.geometry) {
+        // User entered the name of a Place that was not suggested and
+        // pressed the Enter key, or the Place Details request failed.
+        window.alert("No details available for input: '" + place.name + "'");
+        return;
+    }
+    // If the place has a geometry but no viewport, then present it on a map based on this setting.
+    if (!place.geometry.viewport) {
+        map.setCenter(place.geometry.location);
+        map.setZoom(17);  // Why 17? Because it looks good.
+    }
+
+    let service = new google.maps.places.PlacesService(map);
+    //Finding services based on the set parameters of the requested city and then using a callback function
+    let cityName = place.address_components[0].short_name
+    if (cityName === "New York") {
+        cityName += " City"
+    }
+    service.nearbySearch({
+        location: place.geometry.location,
+        radius: 20000,
+        keyword: "Things to do in " + cityName,
+        rankby: "prominence",
+        zoom: 5
+    }, callback);
+}
+
+//Callback that will return top 10 results
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+        //Resetting the toptenthings variable and deleting any markers on the map if exist
+        clearOverlays();
+        topFirstFive = [];
+        topSecondFive = [];
+        bounds = new google.maps.LatLngBounds();
 
-        for (var i = 0; i < 10; i++) {
-            //Will create a marker for each JSON
+        //Creating markers based on the toptenthings array variable
+        for (let i = 0; i < 10; i++) {
+            //Create a marker each item
             createMarker(results[i]);
             if ( i < 5){
                 topFirstFive.push(results[i]);
-                console.log(topFirstFive);
-                
-            }else{
+            } else{
                 topSecondFive.push(results[i]);
-           
             }
-        } 
+        }
+        
+        //Fitting the map boundary to show all markers of the search 
+        map.fitBounds(bounds);
     }
 }
 
-
-function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
+function createMarker(place, photoReference) {
+    let marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location
     });
+    markers.push(marker);
 
-    //Adding a click event listener to the marker that will generate the popup infowindow 
+    //Extending the boundary of the map based on marker's location
+    bounds.extend(place.geometry.location);
+
+    //Marker's click event listener that will generate a popup infowindow 
     google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent('<img src="' + place.icon + '" width="16" height="16"><div><strong>' + place.name + '</strong><br>' + 'Address: ' + place.vicinity + '</div><a href="#">Add to my Itinerary</a>');
+        infowindow.setContent('<img src="' + place.icon + '" width="16" height="16"><div><strong>' + place.name + '</strong><br>' + 'Address: ' + place.vicinity + '</div>');
         infowindow.open(map, this);
     });
 }
 
-$(document).on('click', '#btnSearch', searchCity)
-function searchCity() {
-    let citySearch = $('#cityInput').val().trim();
-    //need to find long and lat of input
-    console.log(citySearch);
-
+//Clears markers if there's any on the map
+function clearOverlays() {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
 }
 
-$(document).on('click', '#btnSearch', searchCity)
-function searchCity() {
-    let citySearch = $('#cityInput').val().trim();
-    //need to find long and lat of input
-    console.log(citySearch);
-}
 
+$(document).on('click', '#btnSearch', function () {
+    let citySearch = $('#cityInput').val().trim();
+    $.ajax({
+        url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + citySearch + "&key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU",
+        method: "GET"
+    })
+        .then(function (result) {
+            if (result.length !== 0) {
+                searchNearbyServices(result.results[0]);
+            }
+        })
+})
 
 function populateTable(fiveOptions) {
 
@@ -180,9 +192,3 @@ function otherOptipns() {
 }
 
 $(document).on("click", "#btnOtherItinerary", otherOptipns);
-
-
-
-
-
-
