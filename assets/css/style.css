@@ -89,7 +89,7 @@ body {
 
 #contentArea {
     background-color: white;
-    height: 500px;
+    /* height: 500px; */
     margin-top: 6px;
 }
 
@@ -115,10 +115,9 @@ body {
 }
 
 #footer {
-    /* position: static;
-    right: 0;
+    position: fixed;
     bottom: 0;
-    left: 0; */
+    left: 0;
     padding: 1rem;
     background-color: teal;
     text-align: center;
@@ -182,3 +181,14 @@ p{
     margin-left: 15%;
     align-self: auto;
 }
+
+.resultsContent{
+    background-color: white ;
+    padding: 1%;
+    width: 80%;
+    align-self: center;
+    border: 10px double #dbdbdb;
+    margin: auto;
+}
+
+
