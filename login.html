@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Document</title>
+</head>
+
+
+<!-- background="assets/images/pattern7.jpg" -->
+<body >
+    <nav class="navbar navbar-default" id="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" id="logo" src="assets/images/logo.jpg">
+                </a>
+            </div>
+            <!-- <button type="button" onclick="mainApp.logOut()" class="btn btn-default navbar-btn">Sign out</button> -->
+        </div>
+    </nav>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="assets/images/cancun.jpg" alt="Cancun" id="slideImg">
+                <div class="carousel-caption">
+                    <h3>Welcome to (Name)</h3>
+                    <p>Let's us help you build your travel itinerary</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="assets/images/tokyo.jpg" alt="Tokyo" id="slideImg">
+                <div class="carousel-caption">
+                    <h3>Think of a place you'd like to visit</h3>
+                    <p>Or create a bucket list!</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="assets/images/paris.jpg" alt="Paris" id="slideImg">
+                <div class="carousel-caption">
+                    <h3>Search a city you would like to visit</h3>
+                    <p>Find the coolest tourist attractions in that city </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="assets/images/london.jpg" alt="London" id="slideImg">
+                <div class="carousel-caption">
+                    <h3>Create a travel itinerary</h3>
+                    <p>And access it from your phone at any time</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="assets/images/philippines.jpeg" alt="Philippines" id="slideImg">
+                <div class="carousel-caption">
+                    <h3>Let's get started</h3>
+                    <p>You can even filter by category</p>
+                </div>
+            </div>
+        </div>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="login">
+                        <div id="firebaseui-auth-container"></div>
+                        <div id="loader">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div id="contentArea" class="col-lg-6"></div> -->
+    <!-- <div class="col-md-6" id="login">
+        
+    </div>
+    </div> -->
+
+    <div class="container" id="footer">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4>Contact us</h4>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/javascript/firebase.js"></script>
+    <script src="./assets/javascript/login.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU&libraries=places&callback=initMap"
+        async defer></script> -->
+</body>
+
+</html>

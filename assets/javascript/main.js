@@ -1,7 +1,30 @@
-let map;
-let infowindow;
-let bounds;
-let markers = [];
+var mainApp = {};
+
+(function () {
+    var uid = null;
+    var firebase = app_firebase;
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in.
+            uid = user.uid;
+        } else {
+            uid = null;
+            window.location.replace('./login.html');
+        }
+    });
+
+    function logOut() {
+        firebase.auth().signOut();
+    }
+
+    mainApp.logOut =logOut;
+})();
+
+
+
+var map;
+var infowindow;
 const hours = ["9:00am", "11:00am", "1:00am", "3:00am", "5:00am"];
 var topFirstFive = [];
 var topSecondFive = [];
@@ -73,7 +96,7 @@ function callback(results, status) {
         for (let i = 0; i < 10; i++) {
             //Create a marker each item
             createMarker(results[i]);
-            if ( i < 5){
+            if (i < 5) {
                 topFirstFive.push(results[i]);
             } else{
                 topSecondFive.push(results[i]);
@@ -177,14 +200,14 @@ $("#btnItinerary").on("click", function () {
 
 function otherOptipns() {
 
-    if (clickedOptions == false){
-        $("#itineraryTable").empty();
+    if (clickedOptions == false) {
+        $("#ititneraryTable").empty();
         populateTable(topSecondFive);
         clickedOptions = true;
         $('#btnOtherItinerary').html("Previous options");
-    }else{
-        
-        $("#itineraryTable").empty();
+    } else {
+
+        $("#ititneraryTable").empty();
         populateTable(topFirstFive);
         clickedOptions = false;
     }
