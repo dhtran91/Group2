@@ -18,7 +18,7 @@ var mainApp = {};
         firebase.auth().signOut();
     }
 
-    mainApp.logOut =logOut;
+    mainApp.logOut = logOut;
 })();
 
 
@@ -26,9 +26,12 @@ var mainApp = {};
 var map;
 var infowindow;
 const hours = ["9:00am", "11:00am", "1:00am", "3:00am", "5:00am"];
+let bounds;
+let markers = [];
 var topFirstFive = [];
 var topSecondFive = [];
 var clickedOptions = false;
+let topTenThings = [];
 
 function initMap() {
 
@@ -86,14 +89,15 @@ function searchNearbyServices(place) {
 //Callback that will return top 10 results
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-        //Resetting the toptenthings variable and deleting any markers on the map if exist
+        //Resetting the topTenThings variable and deleting any markers on the map if exist
         clearOverlays();
         topFirstFive = [];
         topSecondFive = [];
         bounds = new google.maps.LatLngBounds();
 
-        //Creating markers based on the toptenthings array variable
+        //Creating markers based on the topTenThings array variable
         for (let i = 0; i < 10; i++) {
+            getLocationDetail(results[i])
             //Create a marker each item
             createMarker(results[i]);
             if (i < 5) {
@@ -102,13 +106,57 @@ function callback(results, status) {
                 topSecondFive.push(results[i]);
             }
         }
-        
+
         //Fitting the map boundary to show all markers of the search 
         map.fitBounds(bounds);
     }
 }
 
-function createMarker(place, photoReference) {
+function getLocationDetail(place) {
+    let queryUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place.place_id + "&fields=name,photo,review,website,rating,formatted_phone_number&key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU"
+    $.ajax({
+        url: queryUrl,
+        method: "GET"
+    }).then(function (result) {
+        let response = result.result;
+        topTenThings.push(response);
+    })
+}
+
+function populateLocationDetail() {
+    let $locationDetailSection = $('#locationDetailSection');
+    $locationDetailSection.empty();
+
+    let locationDetail = topTenThings.filter((x) => x.name === $(this).html())[0];
+    console.log(locationDetail);
+
+    let locationDiv = $('<div>').attr({
+        class: "location-detail-div panel panel-default", 
+        "data-name": locationDetail.name
+    })
+    let headDiv = $('<div>').attr('class', 'panel-heading').append(`<h2>${locationDetail.name}</h2>`);
+    let bodyDiv = $('<div>').attr('class', 'panel-body');
+    let rateDiv = $('<div>').append(`<span>${locationDetail.rating}</span>`);
+    let reviews = $('<ul>').attr('class', 'list-group');
+    let photoDiv = `<div class="row">`;
+    
+    for (let i = 0; i < locationDetail.photos.length; i++) {
+        let photoUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + locationDetail.photos[i].photo_reference + "&key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU";
+        photoDiv += `<div class="col-xs-6 col-md-3"><a class="thumbnail" href="${photoUrl}"><img src=${photoUrl} alt="${locationDetail.name}"></a></div>`
+    }
+    photoDiv += '</div></div>'
+    
+    for (let i = 0; i < locationDetail.reviews.length; i++) {
+        reviews.append(`<li class="list-group-item">${locationDetail.reviews[i].author_name}<br>${locationDetail.reviews[i].text}</li>`);
+    }
+
+    bodyDiv.append(rateDiv,photoDiv,reviews);
+    $locationDetailSection.append(locationDiv.append(headDiv,bodyDiv));
+}
+
+$(document).on('click', '.option', populateLocationDetail)
+
+function createMarker(place) {
     let marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location
@@ -162,7 +210,7 @@ function populateTable(fiveOptions) {
     for (i = 0; i < fiveOptions.length; i++) {
         tr += '<tr>';
         tr += '<td>' + hours[i] + '</td>';
-        tr += '<td>' + fiveOptions[i].name + '</td>';
+        tr += '<td class="option">' + fiveOptions[i].name + '</td>';
         tr += '</tr>';
     }
 
