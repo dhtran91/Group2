@@ -166,6 +166,8 @@ p{
 
 #explanation{
    color : teal; 
+   box-sizing: border-box;
+   width: 100%
 }
 
 #contactUs{
@@ -190,5 +192,17 @@ p{
     border: 10px double #dbdbdb;
     margin: auto;
 }
+@media (min-width: 992px){
+    .container {
+        width: 100%;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+
+
 
 
