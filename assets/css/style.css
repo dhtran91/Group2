@@ -106,10 +106,12 @@ body {
 
 #filter-btn {
     margin-top: 10px;
+
 }
 
 #btnItinerary {
-    margin-top: 9px;
+    background-color: teal; 
+    color: white;
 }
 
 #footer {
@@ -155,10 +157,17 @@ p{
 
 .content{
     background-color: white ;
-    padding: 2%;
+    padding: 1%;
     width: 80%;
     align-self: center;
     border: 10px double #dbdbdb;
    
 }
 
+#explanation{
+   color : teal; 
+}
+
+a{
+    color:white; 
+}
