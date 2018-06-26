@@ -26,6 +26,8 @@ var mainApp = {};
 var map;
 var infowindow;
 const hours = ["9:00am", "11:00am", "1:00am", "3:00am", "5:00am"];
+let bounds;
+let markers = [];
 var topFirstFive = [];
 var topSecondFive = [];
 var clickedOptions = false;
