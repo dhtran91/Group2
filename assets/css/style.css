@@ -10,7 +10,7 @@ html{
 }
 
 body {
-    position: relative;
+    /* position: relative; */
     margin: 0;
     padding-bottom: 6rem;
     min-height: 100%;
@@ -115,10 +115,10 @@ body {
 }
 
 #footer {
-    position: absolute;
+    /* position: static;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: 0; */
     padding: 1rem;
     background-color: teal;
     text-align: center;
@@ -161,6 +161,7 @@ p{
     width: 80%;
     align-self: center;
     border: 10px double #dbdbdb;
+    margin: auto;
    
 }
 
@@ -168,6 +169,16 @@ p{
    color : teal; 
 }
 
-a{
+#contactUs{
     color:white; 
+}
+
+#developers{
+ text-align: center;
+
+}
+
+#developersContent{
+    margin-left: 15%;
+    align-self: auto;
 }
