@@ -16,6 +16,8 @@
     <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Google Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
     <title>Document</title>
 </head>
 <!-- background="assets/images/pattern7.jpg" -->
@@ -24,8 +26,10 @@
     <nav class="navbar navbar-default" id="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img alt="Brand" id="logo" src="assets/images/logo.jpg">
+                <a class="navbar-brand" href="index.html">
+                    <h3 id="logo">ItinerEZ
+                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                    </h3>
                 </a>
             </div>
             <button type="button" onclick="mainApp.logOut()" class="btn btn-default navbar-btn" id="signInButton">Sign out</button>
@@ -47,7 +51,7 @@
             <div class="item active">
                 <img src="assets/images/cancun.jpg" alt="Cancun" id="slideImg">
                 <div class="carousel-caption">
-                    <h3>Welcome to (Name)</h3>
+                    <h3>Welcome to ItinerEZ</h3>
                     <p>Let's us help you build your travel itinerary</p>
                 </div>
             </div>
@@ -138,17 +142,13 @@
     <div class="content">
         <div class="section" id="mapSection">
             <div class="container" id="mapContainer">
-                <div class="row">
-                    <!-- <div id="contentArea" class="col-lg-6"></div> -->
+                <div class="row" id="mapRow">
                     <div id="mapArea" class="col-lg-12">
-                        Map will go here
                     </div>
                     <button type="button" class="btn btn-default" id="btnItinerary">
                         View Itinerary
                     </button>
                 </div>
-                <br>
-
 
             </div>
         </div>
@@ -161,17 +161,17 @@
         </div>
     </div>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-            <div class="container" id="footer">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h4>
-                            <a id="contactUs" contactUs href="contact.html">About developers</a>
-                        </h4>
-                    </div>
+    <nav id="footer" class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>
+                        <a id="contactUs" contactUs href="contact.html">About developers</a>
+                    </h4>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
 
     <script src="./assets/javascript/firebase.js"></script>
     <script src="./assets/javascript/main.js"></script>

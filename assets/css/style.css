@@ -10,7 +10,7 @@ html{
 }
 
 body {
-    /* position: relative; */
+    position: relative;
     margin: 0;
     padding-bottom: 6rem;
     min-height: 100%;
@@ -18,6 +18,7 @@ body {
     /* background-repeat: no-repeat; */
     /* background-size: cover; */
     background-color: #dbdbdb;
+    background-size: cover;
     
 }
 
@@ -41,10 +42,13 @@ body {
 }
 
 #logo {
-    width: 60px;
-    height: 30px;
-    padding-bottom: 5px;
-    margin-left: 10px;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    color: white;
+    background-color: teal;
+    top: -22px;
+    font-family: 'Shrikhand', cursive;
 }
 
 #signInButton {
@@ -59,6 +63,10 @@ body {
 
 .carousel-caption {
     top: 20px;
+    background-color: teal;
+    height: 25%;
+    opacity: .8;
+    font-family: 'Gloria Hallelujah', cursive; 
 }
 
 /* .carousel-inner {
@@ -96,12 +104,17 @@ body {
 #mapContainer {
     margin-top: 6px;
     text-align: center;
+    margin: auto;
 }
+
+#mapRow {
+    margin: auto;
+}
+
 #mapArea{
-    /* background-color: black; */
     height: 500px;
-    /* border-radius: 25px; */
-    /* border-color: black 3px; */
+    width: 92%;
+    padding: 10px;
 }
 
 #filter-btn {
@@ -115,23 +128,15 @@ body {
 }
 
 #footer {
-    /* position: static;
+    position: absolute;
     right: 0;
     bottom: 0;
-    left: 0; */
+    left: 0; 
     padding: 1rem;
     background-color: teal;
     text-align: center;
     width: 100%;
 } 
-
-/* #pg2Container {
-    height: 600px;
-    background-color: black;
-    margin-top: 6px;
-
-} */
-
 
 
 #map2Div {
@@ -167,6 +172,7 @@ p{
 
 #explanation{
    color : teal; 
+   width: 100%;
 }
 
 #contactUs{
@@ -182,3 +188,23 @@ p{
     margin-left: 15%;
     align-self: auto;
 }
+
+.resultsContent{
+    background-color: white ;
+    padding: 1%;
+    width: 80%;
+    align-self: center;
+    border: 10px double #dbdbdb;
+    margin: auto;
+}
+@media (min-width: 992px){
+    .container {
+        width: 100%;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+
