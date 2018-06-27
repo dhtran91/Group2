@@ -17,19 +17,29 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Document</title>
+    <!-- Google Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Galada" rel="stylesheet">
+    <title>Login ItinerEZ</title>
 </head>
 
 
 <!-- background="assets/images/pattern7.jpg" -->
-<body >
+
+<body>
     <nav class="navbar navbar-default" id="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img alt="Brand" id="logo" src="assets/images/logo.jpg">
+                <a class="navbar-brand" href="index.html">
+                    <h2 class="logoName">ItinerEZ
+                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                    </h2>
                 </a>
             </div>
+            <button type="button" id="homeButton" class="btn btn-default navbar-btn">
+                <a href="index.html">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                </a>
+            </button>
             <!-- <button type="button" onclick="mainApp.logOut()" class="btn btn-default navbar-btn">Sign out</button> -->
         </div>
     </nav>
@@ -41,7 +51,6 @@
             <li data-target="#myCarousel" data-slide-to="2"></li>
             <li data-target="#myCarousel" data-slide-to="3"></li>
             <li data-target="#myCarousel" data-slide-to="4"></li>
-            <li data-target="#myCarousel" data-slide-to="5"></li>
         </ol>
 
         <!-- Wrapper for slides -->
@@ -49,7 +58,7 @@
             <div class="item active">
                 <img src="assets/images/cancun.jpg" alt="Cancun" id="slideImg">
                 <div class="carousel-caption">
-                    <h3>Welcome to (Name)</h3>
+                    <h3>Welcome to ItinerEZ</h3>
                     <p>Let's us help you build your travel itinerary</p>
                 </div>
             </div>
@@ -64,7 +73,7 @@
                 <img src="assets/images/paris.jpg" alt="Paris" id="slideImg">
                 <div class="carousel-caption">
                     <h3>Search a city you would like to visit</h3>
-                    <p>Find the coolest tourist attractions in that city </p>
+                    <p>Find the top tourist attractions</p>
                 </div>
             </div>
             <div class="item">
@@ -77,8 +86,7 @@
             <div class="item">
                 <img src="assets/images/philippines.jpeg" alt="Philippines" id="slideImg">
                 <div class="carousel-caption">
-                    <h3>Let's get started</h3>
-                    <p>You can even filter by category</p>
+                    <h3>Sign in to get started</h3>
                 </div>
             </div>
         </div>
@@ -93,13 +101,12 @@
         </a>
     </div>
 
-
-    <div class="section content" >
+    <div class="section content" id="signInDiv">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="login">
-                        <div id="firebaseui-auth-container"></div>
-                        <div id="loader">Loading...</div>
+                    <div id="firebaseui-auth-container"></div>
+                    <div id="loader">Loading...</div>
                 </div>
             </div>
         </div>
@@ -110,17 +117,19 @@
     </div>
     </div> -->
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-            <div class="container" id="footer">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h4>
-                            <a id="contactUs" contactUs href="contact.html">About developers</a>
-                        </h4>
-                    </div>
+    <nav id="footer" class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>
+                        <a id="contactUs" contactUs href="contact.html">About developers
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        </a>
+                    </h4>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
 
     <script src="./assets/javascript/firebase.js"></script>
     <script src="./assets/javascript/login.js"></script>

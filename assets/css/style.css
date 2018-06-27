@@ -10,9 +10,9 @@ html{
 }
 
 body {
-    /* position: relative; */
+    position: relative;
     margin: 0;
-    padding-bottom: 6rem;
+    padding-bottom: 70px;
     min-height: 100%;
     background-position: center;
     /* background-repeat: no-repeat; */
@@ -40,16 +40,33 @@ body {
     float: left;
 }
 
-#logo {
-    width: 60px;
+.logoName {
+    width: 150px;
     height: 30px;
-    padding-bottom: 5px;
     margin-left: 10px;
+    margin-top: 3px;
+    color: white;
+    font-family: 'Galada', cursive;
 }
 
 #signInButton {
     float: right;
     margin-top: 15px;
+    margin-right: 5px;
+    font-family: 'Galada', cursive;
+}
+#signInButton a {
+    color: teal;
+}
+
+#homeButton {
+    float: right;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+#homeButton span {
+    color: teal;
 }
 
 #slideImg {
@@ -59,11 +76,14 @@ body {
 
 .carousel-caption {
     top: 20px;
+    background-color: teal;
+    height: 100px;
+    opacity: .8;
 }
 
-/* .carousel-inner {
-    text-shadow: 2px 2px black;
-} */
+.carousel-caption h3, p {
+    font-family: 'Galada', cursive;
+}
 
 #searchSection {
     background-color: teal;
@@ -77,10 +97,12 @@ body {
 .input {
     width: 375px;
     padding-left: 5px;
+    font-family: 'Galada', cursive;
 }
 
 #searchPop {
-    color: white
+    color: white;
+    font-family: 'Galada', cursive;
 }
 
 #btnSearch {
@@ -95,18 +117,21 @@ body {
 
 #mapContainer {
     margin-top: 6px;
-    text-align: center;
+    margin: auto;
 }
+
+#mapRow {
+    margin: auto;
+}
+
 #mapArea{
-    /* background-color: black; */
-    height: 500px;
-    /* border-radius: 25px; */
-    /* border-color: black 3px; */
+   width: 100%;
+   height: 500px;
+   margin: auto;
 }
 
 #filter-btn {
     margin-top: 10px;
-
 }
 
 #btnItinerary {
@@ -114,8 +139,14 @@ body {
     color: white;
 }
 
+#signInDiv {
+    margin-top: 5px;
+    background-color: teal;
+    opacity: .8;
+}
+
 #footer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     padding: 1rem;
@@ -124,21 +155,11 @@ body {
     width: 100%;
 } 
 
-/* #pg2Container {
-    height: 600px;
-    background-color: black;
-    margin-top: 6px;
-
-} */
-
-
-
 #map2Div {
     /* background-color: gray; */
     height: 600px;
     width: 45%;
 }
-
 
 #btnOtherItinerary{
     align-self: center;
@@ -161,17 +182,23 @@ p{
     align-self: center;
     border: 10px double #dbdbdb;
     margin: auto;
-   
+}
+
+#welcomeDiv {
+    background-color: teal;
+    opacity: .8;
+    margin-top: 5px;
 }
 
 #explanation{
-   color : teal; 
+   color : white; 
    box-sizing: border-box;
-   width: 100%
+   width: 100%;
 }
 
 #contactUs{
     color:white; 
+    font-family: 'Galada', cursive;
 }
 
 #developers{
@@ -184,15 +211,15 @@ p{
     align-self: auto;
 }
 
-.resultsContent{
+#resultsContent{
     background-color: white ;
-    padding: 1%;
-    width: 80%;
-    align-self: center;
+    width: 100%;
     border: 10px double #dbdbdb;
+    margin-right: 0;
+    margin-left: 0;
     margin: auto;
 }
-@media (min-width: 992px){
+/* @media (min-width: 992px){
     .container {
         width: 100%;
     }
@@ -202,7 +229,7 @@ p{
         width: 100%;
     }
 }
-
+ */
 
 
 
