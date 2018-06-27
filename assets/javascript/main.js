@@ -217,9 +217,10 @@ function populateTable(fiveOptions) {
     table += tr;
     table += '</tbody></table>';
 
+    $("#resultsContent").addClass("content");
     $('#ititneraryTable').append(table);
-    $('#ititneraryTable').css("background-color", "white");
-    $('#ititneraryTable').css("border-radius", "25px");
+
+  
 
     var btnOtherOptions = $(`<button type="button">Other Options</button>`);
     btnOtherOptions.addClass("btn btn-default");
