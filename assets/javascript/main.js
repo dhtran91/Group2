@@ -124,8 +124,8 @@ function getLocationDetail(place) {
 }
 
 function populateLocationDetail() {
-    let $locationDetailSection = $('#locationDetailSection');
-    $locationDetailSection.empty();
+    let $picArea = $('#picArea');
+    $picArea.empty();
 
     let locationDetail = topTenThings.filter((x) => x.name === $(this).html())[0];
     console.log(locationDetail);
@@ -151,7 +151,7 @@ function populateLocationDetail() {
     }
 
     bodyDiv.append(rateDiv,photoDiv,reviews);
-    $locationDetailSection.append(locationDiv.append(headDiv,bodyDiv));
+    $picArea.append(locationDiv.append(headDiv,bodyDiv));
 }
 
 $(document).on('click', '.option', populateLocationDetail)
