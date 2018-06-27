@@ -219,6 +219,11 @@ p{
     margin-left: 0;
     margin: auto;
 }
+
+.option:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
 /* @media (min-width: 992px){
     .container {
         width: 100%;

@@ -25,7 +25,7 @@ var mainApp = {};
 
 var map;
 var infowindow;
-const hours = ["9:00am", "11:00am", "1:00am", "3:00am", "5:00am"];
+const hours = ["9:00am", "11:00am", "1:00pm", "3:00pm", "5:00pm"];
 let bounds;
 let markers = [];
 var topFirstFive = [];
@@ -102,7 +102,7 @@ function callback(results, status) {
             createMarker(results[i]);
             if (i < 5) {
                 topFirstFive.push(results[i]);
-            } else{
+            } else {
                 topSecondFive.push(results[i]);
             }
         }
@@ -113,7 +113,7 @@ function callback(results, status) {
 }
 
 function getLocationDetail(place) {
-    let queryUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place.place_id + "&fields=name,photo,review,website,rating,formatted_phone_number&key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU"
+    let queryUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place.place_id + "&fields=name,opening_hours,vicinity,photo,review,website,rating,formatted_phone_number&key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU"
     $.ajax({
         url: queryUrl,
         method: "GET"
@@ -131,27 +131,42 @@ function populateLocationDetail() {
     console.log(locationDetail);
 
     let locationDiv = $('<div>').attr({
-        class: "location-detail-div panel panel-default", 
+        class: "location-detail-div panel panel-default",
         "data-name": locationDetail.name
     })
     let headDiv = $('<div>').attr('class', 'panel-heading').append(`<h2>${locationDetail.name}</h2>`);
     let bodyDiv = $('<div>').attr('class', 'panel-body');
-    let rateDiv = $('<div>').append(`<span>${locationDetail.rating}</span>`);
-    let reviews = $('<ul>').attr('class', 'list-group');
+    let rateDiv = $('<div>').append(`<span><strong>Rating:</strong> ${locationDetail.rating}/5</span>`);
+    let addressDiv = $('<div>').append(`<strong>Address:</strong> ${locationDetail.vicinity}`);
+    let hourDiv;
+    if (locationDetail.opening_hours) {
+        hourDiv = $('<div>');
+        if (locationDetail.opening_hours.open_now) {
+            hourDiv.append(`<strong>Hours:</strong> Open`)
+        } else {
+            hourDiv.append(`<strong>Hours:</strong> Closed`)
+        }
+        for (let i = 0; i < locationDetail.opening_hours.weekday_text.length; i++) {
+            hourDiv.append(`<br>${locationDetail.opening_hours.weekday_text[i]}`)
+            
+        }
+    }
+    let websiteDiv = $('<div>').append(`<strong>Website:</strong> <a href="${locationDetail.website}">${locationDetail.website}</a>`);
+    let reviews = $('<ul>').attr('class', 'list-group').html(`<h4 class="text-center">Reviews<hr></h4>`);
     let photoDiv = `<div class="row">`;
-    
+
     for (let i = 0; i < locationDetail.photos.length; i++) {
         let photoUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + locationDetail.photos[i].photo_reference + "&key=AIzaSyDg5NeULyIuOpXrGgUWNTAmc4Ect-SsFDU";
         photoDiv += `<div class="col-xs-6 col-md-3"><a class="thumbnail" href="${photoUrl}"><img src=${photoUrl} alt="${locationDetail.name}"></a></div>`
     }
     photoDiv += '</div></div>'
-    
+
     for (let i = 0; i < locationDetail.reviews.length; i++) {
         reviews.append(`<li class="list-group-item">${locationDetail.reviews[i].author_name}<br>${locationDetail.reviews[i].text}</li>`);
     }
 
-    bodyDiv.append(rateDiv,photoDiv,reviews);
-    $picArea.append(locationDiv.append(headDiv,bodyDiv));
+    bodyDiv.append(rateDiv, addressDiv, hourDiv, websiteDiv, photoDiv, reviews);
+    $picArea.append(locationDiv.append(headDiv, bodyDiv));
 }
 
 $(document).on('click', '.option', populateLocationDetail)
@@ -220,7 +235,7 @@ function populateTable(fiveOptions) {
     $("#resultsContent").addClass("content");
     $('#ititneraryTable').append(table);
 
-  
+
 
     var btnOtherOptions = $(`<button type="button">Other Options</button>`);
     btnOtherOptions.addClass("btn btn-default");
