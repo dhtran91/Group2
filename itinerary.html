@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Google Fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Galada" rel="stylesheet">
+    <!-- CSShake -->
+    <link rel="stylesheet" type="text/css" href="assets/CSShake/csshake/docs/csshake.css">
     <title>Itinerary</title>
 </head>
 <!-- background="assets/images/pattern7.jpg" -->
@@ -145,31 +147,34 @@
         </div>
     </div>
 
-    <div class="container" id="mapContainer">
-        <div class="row" id="mapRow">
-            <div id="mapArea" class="col-md-12">
+
+    <!-- <div class="content"> -->
+
+    <div class="container content" id="mapContainer">
+        <div class="row">
+            <!-- <div id="contentArea" class="col-lg-6"></div> -->
+            <div class="col-lg-12">
+                <div id="mapArea">
+                    Map will go here
+                </div>
             </div>
-            <button type="button" class="btn btn-default" id="btnItinerary">
+            <button type="button" class="btn btn-default shake" id="btnItinerary">
                 View Itinerary
             </button>
         </div>
         <br>
     </div>
-
-    <div class="container">
-        <div class="row" id="resultsContent">
-            <div class="col-md-6">
-                <div id="ititneraryTable" class="table-responsive">
-
-                </div>
+    <!-- </div> -->
+    <div class="row" id="resultsContent">
+        <div class="col-md-6">
+            <div id="ititneraryTable" class="table-responsive">
             </div>
-            <div class="col-md-6">
-                <div id="picArea">
-                </div>
+        </div>
+        <div class="col-md-6">
+            <div id="picArea">
             </div>
         </div>
     </div>
-
     <nav id="footer" class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
             <div class="row">
