@@ -54,6 +54,7 @@ body {
     margin-top: 15px;
     margin-right: 5px;
     font-family: 'Galada', cursive;
+    color: teal;
 }
 #signInButton a {
     color: teal;
@@ -88,11 +89,13 @@ body {
 #welcomePics {
     text-align: center;
     margin: auto;
+    float: left;
+    box-sizing: border-box;
 }
 
 #thePics {
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 400px;
 }
 
 #searchSection {
@@ -101,7 +104,7 @@ body {
     width: 100%; 
     text-align: center;
     margin-top: 6px;
-    padding-bottom: 2%;
+    padding-bottom: 5px;
 }
 
 .input {
@@ -116,7 +119,9 @@ body {
 }
 
 #btnSearch {
-    margin-top: 10px
+    margin-top: 10px;
+    font-family: 'Galada', cursive;
+    color: teal;
 }
 
 #contentArea {
@@ -147,6 +152,8 @@ body {
 
 #filter-btn {
     margin-top: 10px;
+    font-family: 'Galada', cursive;
+    color: teal;
 }
 
 #btnItinerary {
@@ -154,6 +161,8 @@ body {
     color: white;
     margin: auto;
     margin-top: 10px;
+    font-family: 'Galada', cursive;
+    height: 30px;
 }
 
 #signInDiv {
@@ -171,8 +180,6 @@ body {
     text-align: center;
     /* width: 100%; */
 } 
-
-
 
 #btnOtherItinerary{
     align-self: center;
@@ -202,6 +209,7 @@ p{
     background-color: white;
     opacity: .8;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 #explanation{
@@ -214,6 +222,9 @@ p{
 #contactUs{
     color:white; 
     font-family: 'Galada', cursive;
+}
+#devPage {
+    margin-top: 5px;
 }
 
 #developers{
