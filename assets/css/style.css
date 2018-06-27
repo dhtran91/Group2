@@ -85,6 +85,16 @@ body {
     font-family: 'Galada', cursive;
 }
 
+#welcomePics {
+    text-align: center;
+    margin: auto;
+}
+
+#thePics {
+    height: 300px;
+    width: 300px;
+}
+
 #searchSection {
     background-color: teal;
     /* height: 150px; */
@@ -125,9 +135,14 @@ body {
 }
 
 #mapArea{
-   width: 100%;
+   width: 98%;
    height: 500px;
-   margin: auto;
+   margin-right: 0;
+   /* margin: auto; */
+   /* padding: 10px; */
+   /* background-color: white ;
+   border: 15px double #dbdbdb; */
+
 }
 
 #filter-btn {
@@ -137,11 +152,13 @@ body {
 #btnItinerary {
     background-color: teal; 
     color: white;
+    margin: auto;
+    margin-top: 10px;
 }
 
 #signInDiv {
     margin-top: 5px;
-    background-color: teal;
+    background-color: white;
     opacity: .8;
 }
 
@@ -152,14 +169,10 @@ body {
     padding: 1rem;
     background-color: teal;
     text-align: center;
-    width: 100%;
+    /* width: 100%; */
 } 
 
-#map2Div {
-    /* background-color: gray; */
-    height: 600px;
-    width: 45%;
-}
+
 
 #btnOtherItinerary{
     align-self: center;
@@ -177,6 +190,7 @@ p{
 
 .content{
     background-color: white ;
+    right: 10px;
     padding: 1%;
     width: 80%;
     align-self: center;
@@ -185,15 +199,16 @@ p{
 }
 
 #welcomeDiv {
-    background-color: teal;
+    background-color: white;
     opacity: .8;
     margin-top: 5px;
 }
 
 #explanation{
-   color : white; 
+   color : teal; 
    box-sizing: border-box;
    width: 100%;
+   text-align: center;
 }
 
 #contactUs{
@@ -203,7 +218,8 @@ p{
 
 #developers{
  text-align: center;
-
+ color: teal;
+ font-family: 'Galada', cursive;
 }
 
 #developersContent{
@@ -211,7 +227,22 @@ p{
     align-self: auto;
 }
 
-#resultsContent{
+.develeopersPic{
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}
+
+#developerName {
+    text-align: center;
+    font-family: 'Galada', cursive;
+    color: teal;
+}
+
+.resultsContent{
     background-color: white ;
     width: 100%;
     border: 10px double #dbdbdb;
@@ -224,17 +255,23 @@ p{
     cursor: pointer;
     text-decoration: underline;
 }
-/* @media (min-width: 992px){
-    .container {
+
+@media (max-width: 980px){
+    .containerExplanation {
         width: 100%;
     }
 }
-@media (min-width: 768px) {
-    .container {
+@media (max-width: 768px) {
+    .containerExplanation {
         width: 100%;
     }
 }
- */
+@media (max-width: 640px) {
+    .containerExplanation {
+        width: 100%;
+    }
+}
+
 
 
 
